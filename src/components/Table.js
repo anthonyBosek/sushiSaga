@@ -1,21 +1,21 @@
-import React from "react";
+import CashForm from "./CashForm";
 
-function Table({ plates = [] }) {
-  // renders an empty plate for every element in the array
-  const emptyPlates = plates.map((_, index) => (
-    <div key={index} className="empty-plate" style={{ top: -7 * index }} />
+const Table = ({ cash, plates, handleAddCash }) => {
+  const stack = plates.map((_, i) => (
+    <div key={i} className="empty-plate" style={{ top: -7 * i }} />
   ));
 
   return (
     <>
-      <h1 className="remaining">
-        You have: ${/* Give me how much money I have left */} remaining!
-      </h1>
+      <h1 className="remaining">You have: ${cash} remaining!</h1>
       <div className="table">
-        <div className="stack">{emptyPlates}</div>
+        <div className="stack">{stack}</div>
+        <div className="form">
+          <CashForm handleAddCash={handleAddCash} />
+        </div>
       </div>
     </>
   );
-}
+};
 
 export default Table;
